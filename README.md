@@ -3,7 +3,11 @@ This script lets you calculate the price of the online purchases in dollar curre
 
 
 Usage: 
+
 1- Type the current price of the dollar currency in ARS (Argentine Peso).
+
 2- Type the price of the product you want to buy in U$D (Dollars).
+
 3- The program will give you the exactly amount to pay.
+
 4- Press enter to exit the program.
