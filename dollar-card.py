@@ -8,13 +8,14 @@ if m == 1:
 	h = input("El producto que desea comprar supera el precio de 50 dolares? si/no: ")
 	y = float(input("Ingrese el valor total en >dolares< del producto que desea: "))
 	if h == "si":
-		print("En total, con todos los impuestos pagaras: ")
 		print("$",((x*3/10+x)*21/100+(x*3/10+x)*y)*(5/10)+(x*3/10+x)*21/100+(x*3/10+x)*y , "Pesos Argentinos")
 
 	if h == "no":
+
+	if m == 2:
+		y = float(input("Ingrese el valor en >dolares< del producto que desea: "))
 		print("En total, con todos los impuestos pagaras: ")
 		print("$",(x*3/10+x)*21/100+(x*3/10+x)*y , "Pesos Argentinos")
-	pass 
 if m == 2:
 	y = float(input("Ingrese el valor en >dolares< del producto que desea: "))
 	print("En total, con todos los impuestos pagaras: ")
@@ -24,7 +25,21 @@ if m == 3:
 	y = float(input("Ingrese el monto de dolares que desea comprar: "))
 	print("En total, con todos los impuestos pagaras: ")
 	print("$",(x*3/10+x)*y , "Pesos Argentinos")
-	pass
 
 z = input("Desea volver a calcular? Si/No: ")
 sys.exit()
+	if m == 3:
+		y = float(input("Ingrese el monto de dolares que desea comprar: "))
+		print("En total, con todos los impuestos pagaras: ")
+		print("$",(x*3/10+x)*y , "Pesos Argentinos")
+		pass
+pass
+
+
+#start the program 
+calculate()
+
+z = input("Desea volver a calcular? s/n: ")
+if z == "s":
+	calculate()
+	pass
