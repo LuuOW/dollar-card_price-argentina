@@ -1,3 +1,4 @@
+import os
 import sys
 
 print("Bienvenido")
@@ -5,7 +6,7 @@ print("Bienvenido")
 x = float(input("Ingrese el precio del dolar hoy: "))
 
 def calculate():
-
+	
 	m = float(input("Desea comprar/importar algo fisico(1*) , un servicio digital(2*) , divisa(3*) ?: "))
 	if m == 1:
 		h = input("El producto que desea comprar supera el precio de 50 dolares? si/no: ")
@@ -29,15 +30,15 @@ def calculate():
 		print("En total, con todos los impuestos pagaras: ")
 		print("$",(x*3/10+x)*y , "Pesos Argentinos")
 		pass
-	z = input("Desea volver a calcular? s/n: ")
 
 #start the program 
-
 def run():
 	calculate()
-
-	while z == "s":
+	z = input("Desea volver a calcular? s/n: ")
+	if z=="s":
 		calculate()
+	if z=="n":
+		sys.exit()
+		pass
 	pass
-
 run()
