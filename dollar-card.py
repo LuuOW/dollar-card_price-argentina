@@ -9,12 +9,12 @@ def calculate():
 	
 	m = float(input("Desea comprar/importar algo fisico(1*) , un servicio digital(2*) , divisa(3*) ?: "))
 	if m == 1:
-		h = input("El producto que desea comprar supera el precio de 50 dolares? si/no: ")
+		h = input("El producto que desea comprar supera el precio de 50 dolares? Si(1*)/No(2*): ")
 		y = float(input("Ingrese el valor total en >dolares< del producto que desea: "))
-		if h == "si":
+		if h == "1":
 			print("En total, con todos los impuestos pagaras: ")
 			print("$",((x*3/10+x)*21/100+(x*3/10+x)*y)*(5/10)+(x*3/10+x)*21/100+(x*3/10+x)*y , "Pesos Argentinos")
-		if h == "no":
+		if h == "2":
 			print("En total, con todos los impuestos pagaras: ")
 			print("$",(x*3/10+x)*21/100+(x*3/10+x)*y , "Pesos Argentinos")
 			pass 
@@ -34,10 +34,10 @@ def calculate():
 #start the program 
 def run():
 	calculate()
-	z = input("Desea volver a calcular? s/n: ")
-	if z=="s":
+	z = input("Desea volver a calcular? Si(1*)/No(2*): ")
+	if z=="1":
 		calculate()
-	if z=="n":
+	if z=="2":
 		sys.exit()
 		pass
 	pass
