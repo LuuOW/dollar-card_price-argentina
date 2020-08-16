@@ -35,10 +35,15 @@ def calculate():
 def run():
 	calculate()
 	z = input("Desea volver a calcular? Si(1*)/No(2*): ")
-	if z=="1":
-		calculate()
-	if z=="2":
-		sys.exit()
+
+	while z != 2:
+
+
+		run()
+
+
+
 		pass
-	pass
+	
+
 run()
