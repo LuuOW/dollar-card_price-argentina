@@ -12,10 +12,8 @@ Usage:
 
 2- Choose the type of product you wish to buy, Physical(1*), digital service(2*) or currency(3*).
 
-DISCLAMER: if you choose physical, the program will ask you if the product exceed the ammount of 50 usd dollars, type "si" if it does or "no" if it doesn't
-
 3- Type the price of the product you want in U$D (dollars).
 
 4- The program will give you the exactly amount to pay.
 
-5- If you wish to exit, after calculate just press "n" when the program ask you or "s" if you wish calculate again .
+5- If you wish to exit, after calculate just press "1" when the program ask you or "2" if you wish calculate again .
