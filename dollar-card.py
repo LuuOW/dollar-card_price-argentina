@@ -1,44 +1,72 @@
 import os
 import sys
+import json
+import requests
 
-print("Bienvenido")
 
-x = float(input("Ingrese el precio del dolar hoy: "))
+url = 'https://api.exchangerate-api.com/v4/latest/USD'
+class CurrencyConverter():
+    def __init__(self, url):
+        self.data = requests.get(url).json()
+        self.currencies = self.data['rates']
+        
+    def convert(self, from_currency, to_currency, amount):
+        
+        if from_currency != 'USD':
+            
+            amount = amount / self.currencies[from_currency]
+        
+        amount = round(amount * self.currencies[to_currency], 4)
+        return amount
+converter = CurrencyConverter(url)
+#print(converter.convert('USD', 'ARS', 1))
 
-def calculate():
+x = converter.convert('USD', 'ARS', 1)
 
-	m = float(input("Desea comprar/importar algo fisico(1*) , un servicio digital(2*) , divisa(3*) ?: "))
+#x = float(input("Ingrese el valor del dolar hoy: "))
 
-	if m == 1:
+#Choose beetwen digital, phisycal or currency purchases
+m = int(input("Que tipo de producto desea comprar: \n"
+"1. Digital \n"
+"2. Fisico \n"
+"3. Divisa \n"))
 
-		y = float(input("Ingrese el valor total en >dolares< del producto que desea: "))
+y = float(input("Ingrese el precio del producto que desea: "))
 
-		if y > "50":
-			print("En total, con todos los impuestos pagaras: ")
-			print("$",((x*3/10+x)*21/100+(x*3/10+x)*y)*(5/10)+(x*3/10+x)*21/100+(x*3/10+x)*y , "Pesos Argentinos")
+#Table of all the taxes
+imp30 = (x*y)*(3/10)
+imp21 = (x*y)*(21/100)
+imp50 = (x*y)*(5/10)
+imp35 = (x*y)*(35/100)
 
-		if y <= "50":
-			print("En total, con todos los impuestos pagaras: ")
-			print("$",(x*3/10+x)*21/100+(x*3/10+x)*y , "Pesos Argentinos") 
+#Full tax for foreign purcheses
+ffTax = imp30 + imp21 + imp50 + imp35
+totalFfTax = ffTax + x*y
 
-	if m == 2:
-		y = float(input("Ingrese el valor en >dolares< del producto que desea: "))
-		print("En total, con todos los impuestos pagaras: ")
-		print("$",(x*3/10+x)*21/100+(x*3/10+x)*y , "Pesos Argentinos")
+#Foreign purcheses tax that doesn't overise 50 USD
+fsTax = imp35 + imp21 + imp35
+totalFsTax = fsTax + x*y
 
-	if m == 3:
-		y = float(input("Ingrese el monto de dolares que desea comprar: "))
-		print("En total, con todos los impuestos pagaras: ")
-		print("$",(x*3/10+x)*y , "Pesos Argentinos")
+#Digital purcheses tax
+digTax = imp30 + imp21 + imp35
+totalDigTax = digTax + x*y
 
-def run():
+#Currency exchange tax
+currTax = imp35 + imp30
+totalCurrTax = currTax + x*y
 
-	calculate()
+if m == 1:
+    print("En total, con todos los impuestos pagaras: \n",
+    totalDigTax, "Pesos Argentinos")
 
-	z = input("Desea calcular otra vez? Si(1*), No(2*): ")
+if m == 2 and y <= 50:
+    print("En total, con todos los impuestos pagaras: \n",
+    totalFsTax, "Pesos Argentinos") 
+if m == 2 and y > 50:
+        print("En total, con todos los impuestos pagaras: \n",
+    totalFfTax, "Pesos Argentinos")
 
-	if z != "2":
-		calculate()
-
-run()
+if m == 3:
+    print("En total, con todos los impuestos pagaras: \n",
+    totalCurrTax, "Pesos Argentinos")
 	
